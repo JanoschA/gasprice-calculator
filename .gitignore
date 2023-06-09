@@ -12,6 +12,7 @@
 
 # Target
 target
+target/
 
 # BlueJ files
 *.ctxt
