@@ -18,6 +18,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
+          distribution: 'corretto'
           java-version: '17'
       - name: Cache Maven packages
         uses: actions/cache@v3
@@ -36,6 +37,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
+          distribution: 'corretto'
           java-version: '17'
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
@@ -63,6 +65,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
+          distribution: 'corretto'
           java-version: '17'
       - name: Cache Maven packages
         uses: actions/cache@v3
