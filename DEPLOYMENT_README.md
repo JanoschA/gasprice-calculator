@@ -14,6 +14,11 @@ ssh -i ec2-key-pair.pem -f -N -L 5432:database-1.c52fr7utzoxw.eu-central-1.rds.a
 ```
 <-- It creates a Tunnel, so we can connect locally against localhost:5432 against our RDS.
 
+/// Info: SSH Client
+```
+ssh -i ec2-key-pair.pem -l root 52.59.51.27
+```
+
 ### Setup Infos:
 - EC2 Instance need a Key Pair to connect via ssh to the instance. [Tutorial](https://linux.how2shout.com/add-a-new-key-pair-to-your-exisitng-aws-ec2-instances/)
 - After the RDS installation, the Database is not created, so we need to create it manually. (SSH Tunnel, Connect to DB, Create DB)
