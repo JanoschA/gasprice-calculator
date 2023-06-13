@@ -1,4 +1,4 @@
-[![CI/CD Pipeline](https://github.com/JanoschA/gasprice-calculator/actions/workflows/pipeline.yml/badge.svg?branch=master)](https://github.com/JanoschA/gasprice-calculator/actions/workflows/pipeline.yml)
+[![CI/CD Pipeline](https://github.com/JanoschA/gasprice-calculator/actions/workflows/pipeline_master.yml/badge.svg?branch=master)](https://github.com/JanoschA/gasprice-calculator/actions/workflows/pipeline_master.yml)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=JanoschA_gasprice-calculator&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=JanoschA_gasprice-calculator)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=JanoschA_gasprice-calculator&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=JanoschA_gasprice-calculator)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=JanoschA_gasprice-calculator&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=JanoschA_gasprice-calculator)
