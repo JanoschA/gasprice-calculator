@@ -6,7 +6,7 @@
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=JanoschA_gasprice-calculator&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=JanoschA_gasprice-calculator)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=JanoschA_gasprice-calculator&metric=coverage)](https://sonarcloud.io/summary/new_code?id=JanoschA_gasprice-calculator)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=JanoschA_gasprice-calculator&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=JanoschA_gasprice-calculator)
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=JanoschA_gasprice-calculator)](https://sonarcloud.io/summary/new_code?id=JanoschA_gasprice-calculator)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=JanoschA_gasprice-calculator&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=JanoschA_gasprice-calculator)
 
 # gasprice-calculator
 The Gasprice Calculator will help you to predict your future gas price
