@@ -10,13 +10,13 @@ More Information about the AWS Infrastructure:
 - The RDS is in a private subnet and can't be reached outside
 - To connect outside to the RDS, we need to use the EC2 instance from our Elastic Beanstalk as a jump host
 ```
-ssh -i ec2-key-pair.pem -f -N -L 5432:database-1.c52fr7utzoxw.eu-central-1.rds.amazonaws.com:5432 ec2-user@52.59.51.27 -v
+ssh -i ec2-key-pair.pem -f -N -L 5432:YOUR_DATABASE_DNS_ADDRESS:5432 ec2-user@YOUR_EC2_IP -v
 ```
 <-- It creates a Tunnel, so we can connect locally against localhost:5432 against our RDS.
 
 /// Info: SSH Client
 ```
-ssh -i ec2-key-pair.pem -l ec2-user 52.59.51.27
+ssh -i ec2-key-pair.pem -l ec2-user YOUR_EC2_IP
 ```
 
 ### Setup Infos:
