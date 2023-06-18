@@ -11,11 +11,16 @@
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=JanoschA_gasprice-calculator&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=JanoschA_gasprice-calculator)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=JanoschA_gasprice-calculator&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=JanoschA_gasprice-calculator)
 
+// TODO: PROJECT IS STILL IN WORK!!!
+
 # gasprice-calculator
 The Gasprice Calculator will help you to predict your future gas price
 
 ## Deployment CI/CD Information
 For information about the deployment CI/CD please check this [out](DEPLOYMENT_README.md).
+
+// TODO:
+Docu how to run this project locally!!!
 
 ## Default Sprint Init Helper
 [Link](HELP.md)
