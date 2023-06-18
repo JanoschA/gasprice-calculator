@@ -8,6 +8,11 @@ spring:
     oauth2:
       client:
         registration:
+          google:
+            clientId: ${GOOGLE_CLIENT_ID}
+            clientSecret: ${GOOGLE_SECRET}
+            scope: profile,email
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
           github:
             client-id: ${GITHUB_CLIENT_ID}
             client-secret: ${GITHUB_CLIENT_SECRET}
