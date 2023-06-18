@@ -66,6 +66,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
                         .requestMatchers("/actuator").permitAll()
                         .requestMatchers("/actuator/**").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/oauth2/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .oauth2Login(oAuth2LoginConfigurer -> oAuth2LoginConfigurer.authorizationEndpoint(authorizationEndpointConfig ->
