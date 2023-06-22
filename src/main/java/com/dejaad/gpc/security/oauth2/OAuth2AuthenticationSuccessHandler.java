@@ -45,7 +45,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         var cookie = new Cookie("token", token);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
-        cookie.setSecure(true);
+        cookie.setSecure(false);
         cookie.setMaxAge(200); // TODO: change the max age
 
         response.addCookie(cookie);
