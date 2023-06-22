@@ -43,7 +43,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
         // TODO: add the name to a enum!!!
         var cookie = new Cookie("token", token);
-        cookie.setDomain("gasprice-calculator.com");
+        //cookie.setDomain("gasprice-calculator.com");
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         cookie.setSecure(false);

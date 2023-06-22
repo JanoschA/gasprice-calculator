@@ -25,8 +25,8 @@ app:
   authorizedRedirectUris:
     - http://localhost:3000/oauth2/redirect
     - http://localhost:4200/oauth2/redirect
-    - http://localhost:4200/#/oauth2/redirect
     - http://localhost:4200/%23/oauth2/redirect
+    - http://localhost:4200/#/oauth2/redirect
     - https://janoscha.github.io/gasprice-calculator-web/oauth2/redirect
     - https://gasprice-calculator.com/%23/oauth2/redirect
     - https://gasprice-calculator.com/#/oauth2/redirect
