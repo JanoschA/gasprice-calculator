@@ -38,8 +38,6 @@ public class TokenProvider {
     }
 
     public String createToken(Authentication authentication) {
-
-
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 
         Date now = new Date();

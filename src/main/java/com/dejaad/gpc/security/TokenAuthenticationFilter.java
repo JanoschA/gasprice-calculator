@@ -1,5 +1,6 @@
 package com.dejaad.gpc.security;
 
+import com.dejaad.gpc.exception.ResourceNotFoundException;
 import com.dejaad.gpc.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,27 +32,35 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        try {
-            String jwt = getJwtFromRequest(request);
+        String jwt = getJwtFromRequest(request);
 
-            if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
-                String userId = tokenProvider.getUserIdFromToken(jwt);
-
-                UserDetails userDetails = userService.loadUserById(userId);
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-            }
-        } catch (Exception ex) {
-            log.error("Could not set user authentication in security context", ex);
+        if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
+            setAuthentication(request, jwt);
         }
 
         filterChain.doFilter(request, response);
     }
 
     private String getJwtFromRequest(HttpServletRequest request) {
-        Cookie authenticationCookie = Arrays.stream(request.getCookies()).filter(c -> getTokenCookieName().equals(c.getName())).findFirst().orElseThrow();
+        Cookie authenticationCookie = Arrays.stream(request.getCookies())
+                .filter(c -> getTokenCookieName().equals(c.getName())).findFirst().orElseThrow();
         return authenticationCookie.getValue();
+    }
+
+    private void setAuthentication(HttpServletRequest request, String jwt) {
+        String userId = tokenProvider.getUserIdFromToken(jwt);
+
+        UserDetails userDetails;
+        try {
+            userDetails = userService.loadUserById(userId);
+        } catch (ResourceNotFoundException ex) {
+            log.error("Could not set user authentication in security context", ex);
+            return;
+        }
+
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }
