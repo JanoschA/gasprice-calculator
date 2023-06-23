@@ -18,6 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Optional;
 
 import static com.dejaad.gpc.security.util.CookieUtils.getTokenCookieName;
 
@@ -42,9 +43,10 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private String getJwtFromRequest(HttpServletRequest request) {
-        Cookie authenticationCookie = Arrays.stream(request.getCookies())
-                .filter(c -> getTokenCookieName().equals(c.getName())).findFirst().orElseThrow();
-        return authenticationCookie.getValue();
+        Optional<Cookie> authenticationCookie = Arrays.stream(request.getCookies())
+                .filter(c -> getTokenCookieName().equals(c.getName())).findFirst();
+
+        return authenticationCookie.map(Cookie::getValue).orElse(null);
     }
 
     private void setAuthentication(HttpServletRequest request, String jwt) {
