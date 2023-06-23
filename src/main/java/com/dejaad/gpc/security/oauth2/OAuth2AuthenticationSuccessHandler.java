@@ -46,7 +46,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         //cookie.setDomain("gasprice-calculator.com");
         cookie.setPath("/");
         cookie.setHttpOnly(true);
-        cookie.setSecure(false);
+        cookie.setSecure(true);
         cookie.setMaxAge(200); // TODO: change the max age
 
         response.addCookie(cookie);
