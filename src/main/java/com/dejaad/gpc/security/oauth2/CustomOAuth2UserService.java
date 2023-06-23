@@ -18,8 +18,6 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.dejaad.gpc.domain.oauth.AuthProvider.google;
-
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 

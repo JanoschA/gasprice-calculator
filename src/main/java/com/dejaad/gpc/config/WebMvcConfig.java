@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.Arrays;
+
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
@@ -12,16 +14,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200", "https://gasprice-calculator.com/", "http://gasprice-calculator.com/", "https://janoscha.github.io/", "http://janoscha.github.io/")
-                //.allowedOrigins("*") // TODO: change me!!!
+                .allowedOrigins("https://gasprice-calculator.com/")
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
-                /*.allowedHeaders(String.valueOf(Arrays.asList(
-                        HttpHeaders.AUTHORIZATION,
-                        HttpHeaders.CONTENT_TYPE,
-                        HttpHeaders.ACCEPT,
-                        HttpHeaders.X
-                )))*/
-                .allowedHeaders("*") // TODO: change me!!!
+                .allowedHeaders("*")
                 .allowCredentials(true)
                 .maxAge(MAX_AGE_SECS);
     }
