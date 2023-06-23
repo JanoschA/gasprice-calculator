@@ -12,11 +12,11 @@ spring:
             clientId: ${GOOGLE_CLIENT_ID}
             clientSecret: ${GOOGLE_SECRET}
             scope: profile,email
-            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            redirectUri: "https://app.gasprice-calculator.com/oauth2/callback/{registrationId}"
           github:
             client-id: ${GITHUB_CLIENT_ID}
             client-secret: ${GITHUB_CLIENT_SECRET}
-            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            redirectUri: "https://app.gasprice-calculator.com/oauth2/callback/{registrationId}"
             scope:
               - user:email
               - read:user
