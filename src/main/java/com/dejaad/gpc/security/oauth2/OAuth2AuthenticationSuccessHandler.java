@@ -2,6 +2,7 @@ package com.dejaad.gpc.security.oauth2;
 
 import com.dejaad.gpc.config.AppConfig;
 import com.dejaad.gpc.exception.BadRequestException;
+import com.dejaad.gpc.security.TokenCookieProvider;
 import com.dejaad.gpc.security.TokenProvider;
 import com.dejaad.gpc.security.util.CookieUtils;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ import java.util.Optional;
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private final TokenProvider tokenProvider;
+    private final TokenCookieProvider tokenCookieProvider;
 
     private final AppConfig appConfig;
 
@@ -40,14 +42,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         }
 
         var token = tokenProvider.createToken(authentication);
-
-        // TODO: add the name to a enum!!!
-        var cookie = new Cookie("token", token);
-        //cookie.setDomain("gasprice-calculator.com");
-        cookie.setPath("/");
-        cookie.setHttpOnly(true);
-        cookie.setSecure(true);
-        cookie.setMaxAge(200); // TODO: change the max age
+        var cookie = tokenCookieProvider.createTokenCookie(token);
 
         response.addCookie(cookie);
 
