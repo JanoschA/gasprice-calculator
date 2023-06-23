@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static com.dejaad.gpc.security.TokenCookieProvider.getTokenCookieName;
+import static com.dejaad.gpc.security.util.CookieUtils.getTokenCookieName;
 
 @Slf4j
 public class TokenAuthenticationFilter extends OncePerRequestFilter {

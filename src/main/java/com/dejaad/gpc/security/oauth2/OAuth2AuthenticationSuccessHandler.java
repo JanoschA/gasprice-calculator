@@ -2,7 +2,6 @@ package com.dejaad.gpc.security.oauth2;
 
 import com.dejaad.gpc.config.AppConfig;
 import com.dejaad.gpc.exception.BadRequestException;
-import com.dejaad.gpc.security.TokenCookieProvider;
 import com.dejaad.gpc.security.TokenProvider;
 import com.dejaad.gpc.security.util.CookieUtils;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +25,6 @@ import java.util.Optional;
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private final TokenProvider tokenProvider;
-    private final TokenCookieProvider tokenCookieProvider;
 
     private final AppConfig appConfig;
 
@@ -42,9 +40,8 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         }
 
         var token = tokenProvider.createToken(authentication);
-        var cookie = tokenCookieProvider.createTokenCookie(token);
 
-        response.addCookie(cookie);
+        CookieUtils.addCookie(response, CookieUtils.getTokenCookieName(), token, 300);
 
         clearAuthenticationAttributes(request, response);
         getRedirectStrategy().sendRedirect(request, response, targetUrl);
