@@ -11,16 +11,42 @@
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=JanoschA_gasprice-calculator&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=JanoschA_gasprice-calculator)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=JanoschA_gasprice-calculator&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=JanoschA_gasprice-calculator)
 
-// TODO: PROJECT IS STILL IN WORK!!!
+# Gasprice Calculator Backend Application ![](https://img.shields.io/badge/Code-Java-informational?style=flat&logo=openjdk&logoColor=white&color=2bbc8a) ![Project Status](https://img.shields.io/badge/Project_Status-IN_PROGRESS-red)
 
-# gasprice-calculator
-The Gasprice Calculator will help you to predict your future gas price
+The Gasprice Calculator Backend Application is a REST-Service to handle/calculator/predict the future gas prices.
+
+You can check it out [gasprice-calculator.com](https://gasprice-calculator.com).
+
+## Table Of Content
+- [Installation](#installation)
+    - [Database](#Database)
+    - [Run Locally](#Run-Locally)
+- [Deployment CI/CD Information](#Deployment-CI/CD-Information)
+- [Default Spring Init Helper](#Default-Spring-Init-Helper)
+
+## Installation
+
+### Database
+You can run with docker your locally db with this command:
+```
+docker run
+    --name gpcPostgres
+    -p 5432:5432
+    -e POSTGRES_USER=admin
+    -e POSTGRES_PASSWORD=admin
+    -e POSTGRES_DB=gpc
+    -d
+    postgres
+```
+
+### Run-Locally
+Run this following command:
+```
+./mvnw spring-boot:run
+```
 
 ## Deployment CI/CD Information
 For information about the deployment CI/CD please check this [out](DEPLOYMENT_README.md).
 
-// TODO:
-Docu how to run this project locally!!!
-
-## Default Sprint Init Helper
+## Default Spring Init Helper
 [Link](HELP.md)
