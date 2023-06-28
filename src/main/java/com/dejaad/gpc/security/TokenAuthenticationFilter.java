@@ -3,7 +3,6 @@ package com.dejaad.gpc.security;
 import com.dejaad.gpc.exception.ResourceNotFoundException;
 import com.dejaad.gpc.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,11 +24,14 @@ import static com.dejaad.gpc.security.util.CookieUtils.getTokenCookieName;
 @Slf4j
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private TokenProvider tokenProvider;
+    private final TokenProvider tokenProvider;
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public TokenAuthenticationFilter(TokenProvider tokenProvider, UserService userService) {
+        this.tokenProvider = tokenProvider;
+        this.userService = userService;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

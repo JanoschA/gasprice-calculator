@@ -2,10 +2,12 @@ package com.dejaad.gpc.config;
 
 import com.dejaad.gpc.security.RestAuthenticationEntryPoint;
 import com.dejaad.gpc.security.TokenAuthenticationFilter;
+import com.dejaad.gpc.security.TokenProvider;
 import com.dejaad.gpc.security.oauth2.CustomOAuth2UserService;
 import com.dejaad.gpc.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.dejaad.gpc.security.oauth2.OAuth2AuthenticationFailureHandler;
 import com.dejaad.gpc.security.oauth2.OAuth2AuthenticationSuccessHandler;
+import com.dejaad.gpc.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -43,8 +45,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public TokenAuthenticationFilter tokenAuthenticationFilter() {
-        return new TokenAuthenticationFilter();
+    public TokenAuthenticationFilter tokenAuthenticationFilter(TokenProvider tokenProvider, UserService userService) {
+        return new TokenAuthenticationFilter(tokenProvider, userService);
     }
 
     @Bean

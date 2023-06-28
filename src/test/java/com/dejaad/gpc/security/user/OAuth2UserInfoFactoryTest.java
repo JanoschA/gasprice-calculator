@@ -14,7 +14,7 @@ import static com.dejaad.gpc.domain.oauth.AuthProvider.GOOGLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class OAuth2UserInfoFactoryTest {
+class OAuth2UserInfoFactoryTest {
 
     @Test
     void getOAuth2UserInfo_GOOGLE() {
