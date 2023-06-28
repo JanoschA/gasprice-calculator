@@ -36,9 +36,10 @@ public class AuthorizationRedirectServiceTest {
             "http://test.com/oauth2/redirect",
             "https://test2.com/oauth2/redirect",
             "https://test.com/oauth3/redirect",
+            "https://test.com:7070/oauth2/redirect",
     })
     void isAuthorizedRedirectUri_wrong_redirect(String redirectUrl) {
-        String uri = "https://test.com/oauth2/redirect";
+        String uri = "https://test.com:8080/oauth2/redirect";
 
         when(appConfig.getAuthorizedRedirectUris()).thenReturn(List.of(
                 redirectUrl

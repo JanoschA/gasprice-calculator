@@ -1,6 +1,7 @@
 package com.dejaad.gpc.security;
 
 import com.dejaad.gpc.domain.oauth.User;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,10 +43,6 @@ public class UserPrincipal implements OAuth2User, UserDetails {
 
     public String getId() {
         return id;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     @Override
