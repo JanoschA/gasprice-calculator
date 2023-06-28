@@ -11,9 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
-import java.security.spec.InvalidKeySpecException;
 import java.util.Date;
 import java.util.UUID;
 
@@ -25,7 +23,7 @@ public class TokenProvider {
 
     private static PrivateKey PRIVATE_KEY;
 
-    public TokenProvider(AppConfig appConfig) throws NoSuchAlgorithmException, InvalidKeySpecException, JOSEException {
+    public TokenProvider(AppConfig appConfig) throws JOSEException {
         this.appConfig = appConfig;
 
         RSAKey jwk = new RSAKeyGenerator(2048)
