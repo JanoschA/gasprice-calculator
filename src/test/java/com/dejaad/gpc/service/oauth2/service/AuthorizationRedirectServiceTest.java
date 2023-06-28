@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class AuthorizationRedirectServiceTest {
+class AuthorizationRedirectServiceTest {
 
     private final AppConfig appConfig = mock(AppConfig.class);
     private final AuthorizationRedirectService authorizationRedirectService = new AuthorizationRedirectService(appConfig);

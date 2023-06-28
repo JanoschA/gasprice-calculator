@@ -45,7 +45,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(oAuth2UserRequest.getClientRegistration().getRegistrationId(), oAuth2User.getAttributes());
 
-        Optional<User> userOptional = userRepository.findByProviderIdAndProvider(oAuth2UserInfo.getId(), AuthProvider.github);
+        Optional<User> userOptional = userRepository.findByProviderIdAndProvider(oAuth2UserInfo.getId(), AuthProvider.GITHUB);
 
         User user;
         if(userOptional.isPresent()) {

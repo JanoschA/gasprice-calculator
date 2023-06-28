@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-public class OAuth2AuthenticationSuccessHandlerTest {
+class OAuth2AuthenticationSuccessHandlerTest {
 
     private final TokenProvider tokenProvider = mock(TokenProvider.class);
     private final AuthorizationRedirectService authorizationRedirectService = mock(AuthorizationRedirectService.class);

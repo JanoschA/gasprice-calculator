@@ -14,6 +14,10 @@ public class CookieUtils {
 
     private static final String TOKEN_COOKIE = "GPC_TOKEN";
 
+    private CookieUtils() throws IllegalAccessException {
+        throw new IllegalAccessException("UTILITY CLASS!");
+    }
+
     public static Optional<Cookie> getCookie(HttpServletRequest request, String name) {
         Cookie[] cookies = request.getCookies();
 

@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @APIntegrationTest
-public class UserServiceImplTest {
+class UserServiceImplTest {
 
     @Autowired
     private UserRepository userRepository;

@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import static org.mockito.Mockito.*;
 
-public class OAuth2AuthenticationFailureHandlerTest {
+class OAuth2AuthenticationFailureHandlerTest {
 
     private final HttpCookieOAuth2AuthorizationRequestRepository repository = mock(HttpCookieOAuth2AuthorizationRequestRepository.class);
     private final OAuth2AuthenticationFailureHandler handler = new OAuth2AuthenticationFailureHandler(repository);

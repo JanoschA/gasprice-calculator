@@ -21,7 +21,7 @@ public class TokenProvider {
 
     private final AppConfig appConfig;
 
-    private static PrivateKey PRIVATE_KEY;
+    private final PrivateKey PRIVATEKEY;
 
     public TokenProvider(AppConfig appConfig) throws JOSEException {
         this.appConfig = appConfig;
@@ -32,7 +32,7 @@ public class TokenProvider {
                 .issueTime(new Date()) // issued-at timestamp (optional)
                 .generate();
 
-        PRIVATE_KEY = jwk.toPrivateKey();
+        PRIVATEKEY = jwk.toPrivateKey();
     }
 
     public String createToken(Authentication authentication) {
@@ -45,13 +45,13 @@ public class TokenProvider {
                 .setSubject((userPrincipal.getId()))
                 .setIssuedAt(new Date())
                 .setExpiration(expiryDate)
-                .signWith(PRIVATE_KEY, SignatureAlgorithm.RS256)
+                .signWith(PRIVATEKEY, SignatureAlgorithm.RS256)
                 .compact();
     }
 
     public String getUserIdFromToken(String token) {
         Claims claims = Jwts.parserBuilder()
-                .setSigningKey(PRIVATE_KEY).build()
+                .setSigningKey(PRIVATEKEY).build()
                 .parseClaimsJws(token).getBody();
 
         return claims.getSubject();
@@ -59,7 +59,7 @@ public class TokenProvider {
 
     public boolean validateToken(String authToken) {
         try {
-            Jwts.parserBuilder().setSigningKey(PRIVATE_KEY).build().parseClaimsJws(authToken);
+            Jwts.parserBuilder().setSigningKey(PRIVATEKEY).build().parseClaimsJws(authToken);
             return true;
         } catch (SignatureException ex) {
             log.error("Invalid JWT signature");
