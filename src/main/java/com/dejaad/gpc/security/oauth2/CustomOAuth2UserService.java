@@ -1,13 +1,6 @@
 package com.dejaad.gpc.security.oauth2;
 
-import com.dejaad.gpc.domain.oauth.AuthProvider;
-import com.dejaad.gpc.domain.oauth.User;
-import com.dejaad.gpc.exception.OAuth2AuthenticationProcessingException;
-import com.dejaad.gpc.repository.UserRepository;
-import com.dejaad.gpc.security.UserPrincipal;
-import com.dejaad.gpc.security.oauth2.user.OAuth2UserInfo;
-import com.dejaad.gpc.security.oauth2.user.OAuth2UserInfoFactory;
-import com.dejaad.gpc.service.UserService;
+import com.dejaad.gpc.security.oauth2.service.OAuth2UserService;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -16,17 +9,13 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
-    private final UserRepository userRepository;
-    private final UserService userService;
+    private final OAuth2UserService processOAuth2User;
 
-    public CustomOAuth2UserService(UserRepository userRepository, UserService userService) {
-        this.userRepository = userRepository;
-        this.userService = userService;
+    public CustomOAuth2UserService(OAuth2UserService processOAuth2User) {
+        this.processOAuth2User = processOAuth2User;
     }
 
     @Override
@@ -34,34 +23,12 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         OAuth2User oAuth2User = super.loadUser(oAuth2UserRequest);
 
         try {
-            return processOAuth2User(oAuth2UserRequest, oAuth2User);
+            return processOAuth2User.process(oAuth2UserRequest, oAuth2User);
         } catch (AuthenticationException ex) {
             throw ex;
         } catch (Exception ex) {
             // Throwing an instance of AuthenticationException will trigger the OAuth2AuthenticationFailureHandler
             throw new InternalAuthenticationServiceException(ex.getMessage(), ex.getCause());
         }
-    }
-
-    private OAuth2User processOAuth2User(OAuth2UserRequest oAuth2UserRequest, OAuth2User oAuth2User) {
-
-        OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(oAuth2UserRequest.getClientRegistration().getRegistrationId(), oAuth2User.getAttributes());
-
-        Optional<User> userOptional = userRepository.findByProviderIdAndProvider(oAuth2UserInfo.getId(), AuthProvider.GITHUB);
-
-        User user;
-        if(userOptional.isPresent()) {
-            user = userOptional.get();
-            if(!user.getProvider().equals(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()))) {
-                throw new OAuth2AuthenticationProcessingException("Looks like you're signed up with " +
-                        user.getProvider() + " account. Please use your " + user.getProvider() +
-                        " account to login.");
-            }
-            user = userService.updateExistingUser(user, oAuth2UserInfo);
-        } else {
-            user = userService.registerNewUser(oAuth2UserRequest, oAuth2UserInfo);
-        }
-
-        return UserPrincipal.create(user, oAuth2User.getAttributes());
     }
 }
