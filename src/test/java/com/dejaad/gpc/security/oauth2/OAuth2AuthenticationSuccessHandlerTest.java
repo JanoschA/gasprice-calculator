@@ -1,9 +1,7 @@
-package com.dejaad.gpc.service.oauth2;
+package com.dejaad.gpc.security.oauth2;
 
 import com.dejaad.gpc.exception.BadRequestException;
 import com.dejaad.gpc.security.TokenProvider;
-import com.dejaad.gpc.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
-import com.dejaad.gpc.security.oauth2.OAuth2AuthenticationSuccessHandler;
 import com.dejaad.gpc.security.oauth2.service.AuthorizationRedirectService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -62,7 +60,7 @@ class OAuth2AuthenticationSuccessHandlerTest {
     }
 
     @Test
-    void onAuthenticationSuccess_wrong_redirect_cookie() throws IOException {
+    void onAuthenticationSuccess_wrong_redirect_cookie() {
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
         Authentication authentication = mock(Authentication.class);

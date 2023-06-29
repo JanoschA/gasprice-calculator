@@ -1,10 +1,9 @@
-package com.dejaad.gpc.security.service;
+package com.dejaad.gpc.security.oauth2.service;
 
 import com.dejaad.gpc.domain.oauth.AuthProvider;
 import com.dejaad.gpc.domain.oauth.User;
 import com.dejaad.gpc.exception.OAuth2AuthenticationProcessingException;
 import com.dejaad.gpc.repository.UserRepository;
-import com.dejaad.gpc.security.oauth2.service.OAuth2UserService;
 import com.dejaad.gpc.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;

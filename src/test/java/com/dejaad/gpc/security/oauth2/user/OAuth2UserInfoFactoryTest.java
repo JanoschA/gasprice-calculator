@@ -1,9 +1,6 @@
-package com.dejaad.gpc.security.user;
+package com.dejaad.gpc.security.oauth2.user;
 
 import com.dejaad.gpc.exception.OAuth2AuthenticationProcessingException;
-import com.dejaad.gpc.security.oauth2.user.GitHubOAuth2UserInfo;
-import com.dejaad.gpc.security.oauth2.user.GoogleOAuth2UserInfo;
-import com.dejaad.gpc.security.oauth2.user.OAuth2UserInfoFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

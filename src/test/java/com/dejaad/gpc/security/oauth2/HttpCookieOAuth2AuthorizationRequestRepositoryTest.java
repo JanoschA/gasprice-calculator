@@ -1,6 +1,5 @@
-package com.dejaad.gpc.security;
+package com.dejaad.gpc.security.oauth2;
 
-import com.dejaad.gpc.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

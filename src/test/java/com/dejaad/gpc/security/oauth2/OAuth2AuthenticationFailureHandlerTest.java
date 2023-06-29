@@ -1,7 +1,5 @@
-package com.dejaad.gpc.service.oauth2;
+package com.dejaad.gpc.security.oauth2;
 
-import com.dejaad.gpc.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
-import com.dejaad.gpc.security.oauth2.OAuth2AuthenticationFailureHandler;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.Test;

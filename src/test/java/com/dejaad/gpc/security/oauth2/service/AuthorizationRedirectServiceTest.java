@@ -1,7 +1,6 @@
-package com.dejaad.gpc.service.oauth2.service;
+package com.dejaad.gpc.security.oauth2.service;
 
 import com.dejaad.gpc.config.AppConfig;
-import com.dejaad.gpc.security.oauth2.service.AuthorizationRedirectService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
