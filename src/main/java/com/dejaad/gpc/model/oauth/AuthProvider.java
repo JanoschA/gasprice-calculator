@@ -1,4 +1,4 @@
-package com.dejaad.gpc.domain.oauth;
+package com.dejaad.gpc.model.oauth;
 
 public enum AuthProvider {
     GOOGLE,

@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.dejaad.gpc.domain.oauth.AuthProvider.GITHUB;
-import static com.dejaad.gpc.domain.oauth.AuthProvider.GOOGLE;
+import static com.dejaad.gpc.model.oauth.AuthProvider.GITHUB;
+import static com.dejaad.gpc.model.oauth.AuthProvider.GOOGLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

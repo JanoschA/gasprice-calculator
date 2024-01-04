@@ -1,7 +1,7 @@
 package com.dejaad.gpc.security.oauth2.service;
 
-import com.dejaad.gpc.domain.oauth.AuthProvider;
-import com.dejaad.gpc.domain.oauth.User;
+import com.dejaad.gpc.model.oauth.AuthProvider;
+import com.dejaad.gpc.model.oauth.User;
 import com.dejaad.gpc.exception.OAuth2AuthenticationProcessingException;
 import com.dejaad.gpc.repository.UserRepository;
 import com.dejaad.gpc.service.UserService;

@@ -1,6 +1,6 @@
 package com.dejaad.gpc.service;
 
-import com.dejaad.gpc.domain.oauth.User;
+import com.dejaad.gpc.model.oauth.User;
 import com.dejaad.gpc.exception.ResourceNotFoundException;
 import com.dejaad.gpc.security.oauth2.user.OAuth2UserInfo;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -5,8 +5,8 @@ import com.dejaad.gpc.exception.OAuth2AuthenticationProcessingException;
 
 import java.util.Map;
 
-import static com.dejaad.gpc.domain.oauth.AuthProvider.GITHUB;
-import static com.dejaad.gpc.domain.oauth.AuthProvider.GOOGLE;
+import static com.dejaad.gpc.model.oauth.AuthProvider.GITHUB;
+import static com.dejaad.gpc.model.oauth.AuthProvider.GOOGLE;
 
 public class OAuth2UserInfoFactory {
 

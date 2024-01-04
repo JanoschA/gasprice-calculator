@@ -1,6 +1,6 @@
 package com.dejaad.gpc.controller;
 
-import com.dejaad.gpc.domain.oauth.User;
+import com.dejaad.gpc.model.oauth.User;
 import com.dejaad.gpc.exception.ResourceNotFoundException;
 import com.dejaad.gpc.repository.UserRepository;
 import com.dejaad.gpc.security.CurrentUser;

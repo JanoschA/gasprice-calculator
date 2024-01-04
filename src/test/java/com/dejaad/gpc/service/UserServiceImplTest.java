@@ -1,8 +1,8 @@
 package com.dejaad.gpc.service;
 
 import com.dejaad.gpc.APIntegrationTest;
-import com.dejaad.gpc.domain.oauth.AuthProvider;
-import com.dejaad.gpc.domain.oauth.User;
+import com.dejaad.gpc.model.oauth.AuthProvider;
+import com.dejaad.gpc.model.oauth.User;
 import com.dejaad.gpc.exception.ResourceNotFoundException;
 import com.dejaad.gpc.repository.UserRepository;
 import com.dejaad.gpc.security.UserPrincipal;

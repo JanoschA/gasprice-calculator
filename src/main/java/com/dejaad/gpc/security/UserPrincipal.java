@@ -1,7 +1,6 @@
 package com.dejaad.gpc.security;
 
-import com.dejaad.gpc.domain.oauth.User;
-import lombok.Getter;
+import com.dejaad.gpc.model.oauth.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
