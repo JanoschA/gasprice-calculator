@@ -8,6 +8,10 @@ import com.dejaad.gpc.model.entity.UserSettingEntity;
  */
 public class UserSettingMapper {
 
+    private UserSettingMapper() throws IllegalAccessException {
+        throw new IllegalAccessException("This is a utility class and cannot be instantiated");
+    }
+
     /**
      * Maps a UserSettingEntity to a SettingDto.
      *

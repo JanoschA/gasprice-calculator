@@ -3,14 +3,19 @@ package com.dejaad.gpc.model.mapper;
 import com.dejaad.gpc.model.dto.SettingDto;
 import com.dejaad.gpc.model.entity.UserSettingEntity;
 import com.dejaad.gpc.model.oauth.User;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
 import java.util.UUID;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UserSettingMapperTest {
 
@@ -63,4 +68,14 @@ public class UserSettingMapperTest {
         );
     }
 
+    @Test
+    void constructor_ShouldBePrivate() throws NoSuchMethodException {
+        Constructor<UserSettingMapper> constructor = UserSettingMapper.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+
+        InvocationTargetException exception = assertThrows(InvocationTargetException.class, constructor::newInstance);
+        assertTrue(exception.getCause() instanceof IllegalAccessException);
+        assertEquals("This is a utility class and cannot be instantiated", exception.getCause().getMessage());
+    }
 }
