@@ -31,7 +31,7 @@ public class SettingController {
      * @param userPrincipal the current user
      * @return the settings of the current user
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public SettingDto getSetting(@CurrentUser UserPrincipal userPrincipal) {
         return settingService.getSetting(userPrincipal.getId());
     }
@@ -43,7 +43,7 @@ public class SettingController {
      * @param settingsDto the new settings to be updated
      * @return the updated settings of the current user
      */
-    @RequestMapping(method = RequestMethod.PUT)
+    @PutMapping
     public SettingDto updateSetting(@CurrentUser UserPrincipal userPrincipal, @RequestBody SettingDto settingsDto) {
         return settingService.updateSetting(userPrincipal.getId(), settingsDto);
     }

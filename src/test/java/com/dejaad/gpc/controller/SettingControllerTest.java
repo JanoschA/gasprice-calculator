@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class SettingControllerTest {
+class SettingControllerTest {
 
     @InjectMocks
     SettingController settingController;
@@ -36,7 +36,7 @@ public class SettingControllerTest {
     }
 
     @Test
-    public void testGetSetting() throws Exception {
+    void testGetSetting() throws Exception {
         Principal mockPrincipal = Mockito.mock(Principal.class);
         Mockito.when(mockPrincipal.getName()).thenReturn("1");
 
@@ -50,7 +50,7 @@ public class SettingControllerTest {
     }
 
     @Test
-    public void testUpdateSetting() throws Exception {
+    void testUpdateSetting() throws Exception {
         Principal mockPrincipal = Mockito.mock(Principal.class);
         Mockito.when(mockPrincipal.getName()).thenReturn("1");
 

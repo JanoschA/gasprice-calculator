@@ -14,7 +14,7 @@ import java.util.Optional;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SettingServiceImplTest {
+class SettingServiceImplTest {
 
     private static final String TEST_USER_ID = "testUserId";
     private static final double MAX_GAS_TANK_VOLUME = 200L;
@@ -38,7 +38,7 @@ public class SettingServiceImplTest {
     }
 
     @Test
-    public void shouldReturnUserSettingWhenGetSettingIsCalled() {
+    void shouldReturnUserSettingWhenGetSettingIsCalled() {
         SettingDto result = settingService.getSetting(TEST_USER_ID);
 
         assertEquals(MAX_GAS_TANK_VOLUME, result.maxGasTankVolume());
@@ -46,7 +46,7 @@ public class SettingServiceImplTest {
     }
 
     @Test
-    public void shouldUpdateAndReturnNewSettingWhenUpdateSettingIsCalled() {
+    void shouldUpdateAndReturnNewSettingWhenUpdateSettingIsCalled() {
         SettingDto settingDto = new SettingDto(100L);
 
         when(userSettingRepository.save(any(UserSettingEntity.class))).thenReturn(userSettingEntity);
