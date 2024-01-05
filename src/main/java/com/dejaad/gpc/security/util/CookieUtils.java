@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 /**
@@ -22,7 +23,7 @@ public class CookieUtils {
     private static final String TOKEN_COOKIE = "GPC_TOKEN";
 
     private CookieUtils() throws IllegalAccessException {
-        throw new IllegalAccessException("UTILITY CLASS!");
+        throw new IllegalAccessException("This is a utility class and cannot be instantiated");
     }
 
     /**
@@ -41,14 +42,14 @@ public class CookieUtils {
     }
 
     /**
-     * Adds a cookie to the response.
+     * Adds a secured cookie to the response.
      *
      * @param response the HttpServletResponse to which to add the cookie
      * @param name the name of the cookie to add
      * @param value the value of the cookie to add
      * @param maxAge the maximum age of the cookie in seconds
      */
-    public static void addCookie(HttpServletResponse response, String name, String value, int maxAge) {
+    public static void addSecureCookie(HttpServletResponse response, String name, String value, int maxAge) {
         Cookie cookie = new Cookie(name, value);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
@@ -64,22 +65,22 @@ public class CookieUtils {
      * @param response the HttpServletResponse to which to add the deletion command
      * @param name the name of the cookie to delete
      */
-    public static void deleteCookie(HttpServletRequest request, HttpServletResponse response, String name) {
+    public static void deleteCookie(HttpServletRequest request, HttpServletResponse response, String name) throws NoSuchElementException {
         Cookie[] cookies = request.getCookies();
 
         if (cookies == null) {
             return;
         }
 
-        Arrays.stream(cookies)
+        Cookie cookie = Arrays.stream(cookies)
             .filter(x -> x.getName().equals(name))
             .findFirst()
-            .ifPresent(cookie -> {
-                cookie.setValue("");
-                cookie.setPath("/");
-                cookie.setMaxAge(0);
-                response.addCookie(cookie);
-            });
+            .orElseThrow();
+
+        cookie.setValue("");
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
     }
 
     /**
@@ -107,7 +108,7 @@ public class CookieUtils {
             try (ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(data))) {
                 return clazz.cast(objectInputStream.readObject());
             }
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException | ClassCastException e) {
             throw new RuntimeException("Failed to deserialize object", e);
         }
     }

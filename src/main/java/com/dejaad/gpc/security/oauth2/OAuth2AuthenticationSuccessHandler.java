@@ -39,7 +39,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
         var token = tokenProvider.createToken(authentication);
 
-        CookieUtils.addCookie(response, CookieUtils.getTokenCookieName(), token, 300);
+        CookieUtils.addSecureCookie(response, CookieUtils.getTokenCookieName(), token, 300);
 
         clearAuthenticationAttributes(request, response);
         getRedirectStrategy().sendRedirect(request, response, targetUrl);
