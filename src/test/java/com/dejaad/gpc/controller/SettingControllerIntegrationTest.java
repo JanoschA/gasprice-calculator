@@ -1,5 +1,6 @@
 package com.dejaad.gpc.controller;
 
+import com.dejaad.gpc.PostgresTestContainer;
 import com.dejaad.gpc.model.dto.SettingDto;
 import com.dejaad.gpc.model.oauth.User;
 import com.dejaad.gpc.repository.UserRepository;
@@ -18,6 +19,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.Optional;
 
@@ -31,7 +33,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SettingControllerIntegrationTest {
+@Testcontainers
+public class SettingControllerIntegrationTest extends PostgresTestContainer {
 
     @Autowired
     private MockMvc mockMvc;
