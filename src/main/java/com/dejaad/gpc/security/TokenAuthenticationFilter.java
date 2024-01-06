@@ -45,6 +45,10 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private String getJwtFromRequest(HttpServletRequest request) {
+        if (request.getCookies() == null) {
+            return null;
+        }
+
         Optional<Cookie> authenticationCookie = Arrays.stream(request.getCookies())
                 .filter(c -> getTokenCookieName().equals(c.getName())).findFirst();
 
