@@ -14,6 +14,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * Service class for handling OAuth2 user information.
+ * This service is responsible for processing OAuth2 user requests and either updating an existing user or registering a new one.
+ */
 @Service
 public class OAuth2UserService {
 
@@ -25,16 +29,27 @@ public class OAuth2UserService {
         this.userService = userService;
     }
 
+    /**
+     * Processes the OAuth2UserRequest and OAuth2User to either update an existing user or register a new one.
+     *
+     * @param oAuth2UserRequest The OAuth2UserRequest object containing details of the OAuth2 request.
+     * @param oAuth2User The OAuth2User object containing details of the authenticated user.
+     * @return A UserPrincipal object representing the authenticated user.
+     * @throws OAuth2AuthenticationProcessingException If the provider of the authenticated user does not match the provider of the existing user.
+     */
     public OAuth2User process(OAuth2UserRequest oAuth2UserRequest, OAuth2User oAuth2User) {
+        OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(
+                oAuth2UserRequest.getClientRegistration().getRegistrationId(), oAuth2User.getAttributes());
 
-        OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(oAuth2UserRequest.getClientRegistration().getRegistrationId(), oAuth2User.getAttributes());
+        AuthProvider provider = AuthProvider.valueOf(
+                oAuth2UserRequest.getClientRegistration().getRegistrationId().toUpperCase());
 
-        Optional<User> userOptional = userRepository.findByProviderIdAndProvider(oAuth2UserInfo.getId(), AuthProvider.GITHUB);
+        Optional<User> userOptional = userRepository.findByProviderIdAndProviderNot(oAuth2UserInfo.getId(), provider);
 
         User user;
         if(userOptional.isPresent()) {
             user = userOptional.get();
-            if(!user.getProvider().equals(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()))) {
+            if(!user.getProvider().equals(provider)) {
                 throw new OAuth2AuthenticationProcessingException("Looks like you're signed up with " +
                         user.getProvider() + " account. Please use your " + user.getProvider() +
                         " account to login.");

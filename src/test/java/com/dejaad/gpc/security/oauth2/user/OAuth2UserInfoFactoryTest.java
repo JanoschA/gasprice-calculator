@@ -31,6 +31,23 @@ class OAuth2UserInfoFactoryTest {
     }
 
     @Test
+    void getOAuth2UserInfo_google() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("sub", "123456789");
+        map.put("name", "Max Mustermann");
+        map.put("email", "max.mustermann@xyz.com");
+        map.put("picture", "picture1");
+
+        GoogleOAuth2UserInfo oAuth2UserInfo = (GoogleOAuth2UserInfo) OAuth2UserInfoFactory
+                .getOAuth2UserInfo("google", map);
+
+        assertEquals("123456789", oAuth2UserInfo.getId());
+        assertEquals("Max Mustermann", oAuth2UserInfo.getName());
+        assertEquals("max.mustermann@xyz.com", oAuth2UserInfo.getEmail());
+        assertEquals("picture1", oAuth2UserInfo.getImageUrl());
+    }
+
+    @Test
     void getOAuth2UserInfo_GITHUB() {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "123456789");
@@ -39,6 +56,22 @@ class OAuth2UserInfoFactoryTest {
 
         GitHubOAuth2UserInfo oAuth2UserInfo = (GitHubOAuth2UserInfo) OAuth2UserInfoFactory
                 .getOAuth2UserInfo(GITHUB.name(), map);
+
+        assertEquals("123456789", oAuth2UserInfo.getId());
+        assertEquals("Max Mustermann", oAuth2UserInfo.getName());
+        assertEquals("no-email", oAuth2UserInfo.getEmail());
+        assertEquals("picture1", oAuth2UserInfo.getImageUrl());
+    }
+
+    @Test
+    void getOAuth2UserInfo_github() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", "123456789");
+        map.put("name", "Max Mustermann");
+        map.put("avatar_url", "picture1");
+
+        GitHubOAuth2UserInfo oAuth2UserInfo = (GitHubOAuth2UserInfo) OAuth2UserInfoFactory
+                .getOAuth2UserInfo("github", map);
 
         assertEquals("123456789", oAuth2UserInfo.getId());
         assertEquals("Max Mustermann", oAuth2UserInfo.getName());
