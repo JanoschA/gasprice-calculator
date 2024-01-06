@@ -11,35 +11,58 @@ The application is built using Java and Spring Boot, providing a robust and scal
 The application is hosted and can be accessed at [gasprice-calculator.com](https://gasprice-calculator.com). Here, you can find detailed API documentation, usage examples, and more information about the underlying algorithm and data sources.
 
 ## Table of Contents
+-[Prerequisites](#prerequisites)
 - [Installation](#installation)
   - [Database](#database)
-  - [Run Locally](#run-locally)
+  - [Running the Application Locally](#Running-the-Application-Locally)
 - [Deployment CI/CD Information](#deployment-cicd-information)
 - [Default Spring Init Helper](#default-spring-init-helper)
+
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+* You have installed the latest version of [Java](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html). This project uses Java 17.
+* You have a Linux/Mac/Windows machine.
+* You have installed [Docker](https://docs.docker.com/get-docker/). This project uses Docker for creating isolated environments.
 
 ## Installation
 
 ### Database
-Run a local PostgreSQL database using Docker with the following command:
 
-```shell
-docker run \
-    --name gpcPostgres \
-    -p 5432:5432 \
-    -e POSTGRES_USER=admin \
-    -e POSTGRES_PASSWORD=admin \
-    -e POSTGRES_DB=gpc \
-    -d \
-    postgres
-```
-This command will start a PostgreSQL database in a Docker container with the name `gpcPostgres`, accessible at port `5432`. The database name, user, and password are all set to `admin`.
+You can run a local PostgreSQL database using Docker. Here are the steps:
 
-### Run-Locally
-Run this following command:
-```
-./mvnw spring-boot:run
-```
-This command will start the Spring Boot application using Maven.
+1. To create and start the database, run the following command:
+
+    ```shell
+    docker run --name gpcPostgres -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=gpc -d postgres
+    ```
+
+   This command will start a PostgreSQL database in a Docker container named `gpcPostgres`, accessible at port `5432`. The database name, user, and password are all set to `admin`.
+
+2. If the container is already created but not running, you can start it with the following command:
+
+    ```shell
+    docker start gpcPostgres
+    ```
+
+Remember to replace `admin` with your actual username and password, and `gpc` with your actual database name.
+
+### Running the Application Locally
+
+Follow these steps to run the application:
+
+1. Execute the following command:
+
+    ```shell
+    ./mvnw spring-boot:run
+    ```
+
+   This command starts the Spring Boot application using Maven.
+
+2. Once the application starts, navigate to `http://localhost:8080` in your web browser.
+
+3. To verify that the application is running correctly, access the `/actuator/health` endpoint. You should receive a `200` status code and a response body of `{"status":"UP"}`.
 
 ## Deployment CI/CD Information
 For information about the deployment CI/CD, please check out the [deployment guide](DEPLOYMENT_README.md).
